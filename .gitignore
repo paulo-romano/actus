@@ -1,0 +1,6 @@
+.env
+.idea
+/npm-debug.log
+*.sqlite3
+__pycache__
+public/
