@@ -18,6 +18,6 @@ from django.contrib import admin
 from actus.core.views import HomeView
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view()),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
 ]
