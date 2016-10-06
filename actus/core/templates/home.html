@@ -239,12 +239,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {% for problem in object_list %}
+                        <tr>
                         <td>#</td>
                         <td>
-                          <a>Pintar bancos da Praça da Sé</a>
+                          <a>{{ problem.name }}</a>
                           <br />
-                          <small>Aberto em 01.01.2017</small>
+                          <small>Aberto em {{ problem.created_at }}</small>
                         </td>
                         <td>
                           <ul class="list-inline">
@@ -277,73 +278,7 @@
                           <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Apagar </a>
                         </td>
                       </tr>
-                      <tr>
-                        <td>#</td>
-                        <td>
-                          <a>Plantar flores na rua Alva</a>
-                          <br />
-                          <small>Aberto em 01.01.2017</small>
-                        </td>
-                        <td>
-                          <ul class="list-inline">
-                            <li>
-                              <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                            </li>
-                            <li>
-                              <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                            </li>
-                          </ul>
-                        </td>
-                        <td class="project_progress">
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                          </div>
-                          <small>47% Complete</small>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-success btn-xs">Sucesso</button>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Visualizar </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Apagar </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#</td>
-                        <td>
-                          <a>Trocar equipamentos da praça</a>
-                          <br />
-                          <small>Aberto em 01.01.2017</small>
-                        </td>
-                        <td>
-                          <ul class="list-inline">
-                            <li>
-                              <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                            </li>
-                            <li>
-                              <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                            </li>
-                            <li>
-                              <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                            </li>
-                          </ul>
-                        </td>
-                        <td class="project_progress">
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                          </div>
-                          <small>77% Complete</small>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-success btn-xs">Sucesso</button>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Visualizar </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Apagar </a>
-                        </td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                   <!-- end project list -->
