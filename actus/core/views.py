@@ -4,6 +4,6 @@ from django.views.generic import ListView
 from actus.core.models import Problem
 
 
-class HomeView(ListView):
-    template_name = 'home.html'
+class ProblemListView(ListView):
+    template_name = 'problem_list.html'
     model = Problem
