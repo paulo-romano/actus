@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from actus.core.views import ProblemListView
+from actus.core.views import ProblemListView, ProblemDetailView
 
 urlpatterns = [
     url(r'^$', ProblemListView.as_view(), name='home'),
+    url(r'^problem/(?P<pk>[^/]+)/$', ProblemDetailView.as_view(), name='problem-detail'),
     url(r'^admin/', admin.site.urls),
 ]
