@@ -2,7 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  {% include 'includes/head.html' %}
+  <head>
+    <title>{% block page_name %}{% endblock %} | Cidade em Ação</title>
+
+    {% include 'includes/head.html' %}
+  </head>
 
   <body class="nav-md">
     <div class="container body">
