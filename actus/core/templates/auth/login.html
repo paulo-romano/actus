@@ -6,7 +6,7 @@
 {% block page_content %}
 <div class="right_col" style="margin-left: 0px; margin-right: 0px;" role="main">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
 
         <div class="x_content">
@@ -20,7 +20,7 @@
               {% endfor %}
             {% endif %}
             {% fields_for form %}
-            <div class="form-actions col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
               <input class="btn btn-primary" type="submit"
                      value="{% if page.form.button_text %}{{ page.form.button_text }}{% else %}Entrar{% endif %}">
             </div>
