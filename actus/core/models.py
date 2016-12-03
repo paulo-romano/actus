@@ -31,7 +31,7 @@ class Problem(BaseModel):
 
 class Comment(BaseModel):
     problem = models.ForeignKey(Problem)
-    body = models.TextField(verbose_name='Copor', null=True, blank=True)
+    body = models.TextField(verbose_name='Comentário', null=True, blank=True)
 
     def __str__(self):
         return self.created_by.first_name + ' comentou em ' + str(self.created_at)
