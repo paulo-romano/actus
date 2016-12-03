@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
 from actus.core.models import Problem, Comment
-from actus.core.forms import LoginForm, ProblemForm
+from actus.core.forms import LoginForm, ProblemForm, ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
@@ -42,6 +42,12 @@ class ProblemUpdateView(UpdateView):
     template_name = 'problem_update.html'
     model = Problem
     form_class = ProblemForm
+
+
+class UserUpdateView(UpdateView):
+    template_name = 'user_update.html'
+    model = User
+    form_class = ProfileForm
 
 def user_login(request):
     context = RequestContext(request)

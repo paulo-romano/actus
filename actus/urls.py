@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout
+from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout, \
+    UserUpdateView
 from django.urls import reverse
 
 urlpatterns = [
@@ -25,5 +26,7 @@ urlpatterns = [
 
     url(r'^accounts/login/$', user_login, name='login'),
     url(r'^accounts/logout/$', user_logout, name='logout'),
+    url(r'^accounts/(?P<pk>[^/]+)/update/$', UserUpdateView.as_view(success_url='/'), name='user-update'),
+
     url(r'^admin/', admin.site.urls),
 ]
