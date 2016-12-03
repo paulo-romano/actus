@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.urls import reverse
 from django.utils.http import is_safe_url
+from django.views.generic import CreateView
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
 from actus.core.models import Problem, Comment
 from actus.core.forms import LoginForm, ProblemForm, ProfileForm
@@ -39,6 +40,12 @@ class ProblemDetailView(DetailView):
 
 
 class ProblemUpdateView(UpdateView):
+    template_name = 'problem_update.html'
+    model = Problem
+    form_class = ProblemForm
+
+
+class ProblemCreateView(CreateView):
     template_name = 'problem_update.html'
     model = Problem
     form_class = ProblemForm
