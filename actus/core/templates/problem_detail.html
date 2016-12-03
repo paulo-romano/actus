@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load gravatar %}
 {% block page_name %}{{ object.name }}{% endblock %}
 {% block page_content %}
   <div class="right_col" role="main">
@@ -84,7 +85,7 @@
                   <ul class="messages">
                     {% for comment in object.comment_set.all %}
                       <li>
-                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
+                        <img src="{% gravatar_url comment.created_by.email 150 %}" class="avatar" alt="Avatar">
                         <div class="message_date">
                           <h3 class="date text-info">{{ comment.created_at|date:'d' }}</h3>
                           <p class="month">{{ comment.created_at|date:'M' }}</p>

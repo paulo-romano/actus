@@ -71,7 +71,7 @@
                     <ul class="list-inline">
                       {% for contributor in problem.contributors.all %}
                         <li>
-                          <img src="{% gravatar_url user.email 150 %}" class="avatar" alt="Avatar">
+                          <img src="{% gravatar_url contributor.email 150 %}" class="avatar" alt="Avatar">
                         </li>
                       {% endfor %}
                     </ul>
