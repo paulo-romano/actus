@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout
+from django.urls import reverse
 
 urlpatterns = [
     url(r'^$', ProblemListView.as_view(), name='home'),
     url(r'^problem/(?P<pk>[^/]+)/$', ProblemDetailView.as_view(), name='problem-detail'),
-    url(r'^problem/(?P<pk>[^/]+)/update/$', ProblemUpdateView.as_view(), name='problem-update'),
+    url(r'^problem/(?P<pk>[^/]+)/update/$', ProblemUpdateView.as_view(success_url='/'), name='problem-update'),
 
     url(r'^accounts/login/$', user_login, name='login'),
     url(r'^accounts/logout/$', user_logout, name='logout'),
