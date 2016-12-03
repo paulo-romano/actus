@@ -44,6 +44,10 @@ class ProblemUpdateView(UpdateView):
     model = Problem
     form_class = ProblemForm
 
+    def form_valid(self, form):
+        form.instance.updated_by = self.request.user
+        return super(ProblemCreateView, self).form_valid(form)
+
 
 class ProblemCreateView(CreateView):
     template_name = 'problem_create.html'
