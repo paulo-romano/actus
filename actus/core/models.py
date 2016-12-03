@@ -13,9 +13,20 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class Category(BaseModel):
+    name = models.CharField(verbose_name='Nome', max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
 class Problem(BaseModel):
     name = models.CharField(verbose_name='Nome', max_length=100)
     description = models.TextField(verbose_name='Descrição', null=True, blank=True)
+    category = models.ForeignKey(Category, verbose_name='Categoria', null=True, blank=True)
     duedate = models.DateField(verbose_name='Data Finalização')
     budget = models.DecimalField(verbose_name='Orçamento', decimal_places=2, max_digits=10, default=0)
     budget_used = models.DecimalField(verbose_name='Gasto', decimal_places=2, max_digits=10, default=0)

@@ -24,7 +24,7 @@ class ProfileForm(ModelForm):
 class ProblemForm(ModelForm):
     class Meta:
         model = Problem
-        fields = ['name', 'description', 'duedate', 'budget']
+        fields = ['name', 'category', 'description', 'duedate', 'budget']
 
 class CommetForm(ModelForm):
     class Meta:
