@@ -81,18 +81,11 @@
                   </td>
                   <td>
                     <ul class="list-inline">
-                      <li>
-                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      </li>
-                      <li>
-                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      </li>
-                      <li>
-                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      </li>
-                      <li>
-                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      </li>
+                      {% for contributor in problem.contributors.all %}
+                        <li>
+                          <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
+                        </li>
+                      {% endfor %}
                     </ul>
                   </td>
                   <td class="project_progress">
