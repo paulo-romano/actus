@@ -33,7 +33,7 @@ class Comment(BaseModel):
     body = models.TextField(verbose_name='Copor', null=True, blank=True)
 
     def __str__(self):
-        return self.created_by.first_name + ' comentou em ' + self.created_at
+        return self.created_by.first_name + ' comentou em ' + str(self.created_at)
 
     class Meta:
         verbose_name = 'problema'
