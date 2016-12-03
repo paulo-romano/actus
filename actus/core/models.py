@@ -14,6 +14,8 @@ class Problem(BaseModel):
     name = models.CharField(verbose_name='Nome', max_length=100)
     description = models.TextField(verbose_name='Descrição', null=True, blank=True)
     duedate = models.DateField(verbose_name='Data Finalização')
+    budget = models.DecimalField(verbose_name='Orçamento', decimal_places=2, max_digits=10, default=0)
+    budget_used = models.DecimalField(verbose_name='Gasto', decimal_places=2, max_digits=10, default=0)
 
     class Meta:
         verbose_name = 'problema'
