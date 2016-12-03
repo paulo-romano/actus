@@ -9,7 +9,7 @@ class BaseModelAdmin(admin.ModelAdmin):
 @admin.register(Problem)
 class ProblemAdmin(BaseModelAdmin):
     short_description = 'Problemas'
-    fields = ('name', 'description')
-    search_fields = ('name',)
-    list_display = ('name',)
+    fields = ('name', 'description', 'duedate',)
+    search_fields = ('name', 'duedate',)
+    list_display = ('name', 'duedate',)
 

@@ -13,6 +13,7 @@ class BaseModel(models.Model):
 class Problem(BaseModel):
     name = models.CharField(verbose_name='Nome', max_length=100)
     description = models.TextField(verbose_name='Descrição', null=True, blank=True)
+    duedate = models.DateField(verbose_name='Data Finalização')
 
     class Meta:
         verbose_name = 'problema'
