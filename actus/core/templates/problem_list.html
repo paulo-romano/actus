@@ -75,7 +75,7 @@
                   <tr>
                   <td>#</td>
                   <td>
-                    <a>{{ problem.name }}</a>
+                    <a href="{% url 'problem-detail' problem.id %}">{{ problem.name }}</a>
                     <br />
                     <small>Aberto em {{ problem.created_at }}</small>
                   </td>
@@ -98,9 +98,9 @@
                     <button type="button" class="btn btn-success btn-xs">Sucesso</button>
                   </td>
                   <td>
-                    <a href="{% url 'problem-detail' problem.id %}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Visualizar </a>
+{#                    <a href="{% url 'problem-detail' problem.id %}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Visualizar </a>#}
                     <a href="{% url 'problem-update' problem.id %}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Apagar </a>
+{#                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Apagar </a>#}
                   </td>
                 </tr>
                 {% endfor %}
