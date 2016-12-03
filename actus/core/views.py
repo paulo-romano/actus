@@ -52,7 +52,7 @@ def user_login(request):
 
     else:
         form = LoginForm()
-    return render(request, 'auth/login.html', {'form': form, 'context': context})
+    return render(request, 'accounts/login.html', {'form': form, 'context': context})
 
 def user_logout(request):
     logout(request)
