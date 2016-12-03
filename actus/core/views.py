@@ -8,7 +8,7 @@ from django.utils.http import is_safe_url
 from django.views.generic import CreateView
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
 from actus.core.models import Problem, Comment
-from actus.core.forms import LoginForm, ProblemForm, ProfileForm
+from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
@@ -64,6 +64,26 @@ class UserUpdateView(UpdateView):
     template_name = 'user_update.html'
     model = User
     form_class = ProfileForm
+
+def problem_collaborate(request, pk):
+    context = RequestContext(request)
+    problem = Problem.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = CommetForm(data=request.POST)
+        if form.is_valid():
+            problem.contributors.add(request.user)
+            Comment.objects.create(created_by=request.user,
+                                   updated_by=request.user,
+                                   problem=problem,
+                                   body=form.data.get('body'))
+
+            return redirect('problem-detail', pk=pk)
+    else:
+        form = CommetForm()
+
+    return render(request, 'problem_collaborate.html',
+                  {'form': form, 'context': context, 'problem': problem})
 
 def user_login(request):
     context = RequestContext(request)

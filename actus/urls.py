@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout, \
-    UserUpdateView, ProblemCreateView
+    UserUpdateView, ProblemCreateView, problem_collaborate
 from django.urls import reverse
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^problem/create/$', ProblemCreateView.as_view(success_url='/'), name='problem-create'),
     url(r'^problem/(?P<pk>[^/]+)/$', ProblemDetailView.as_view(), name='problem-detail'),
     url(r'^problem/(?P<pk>[^/]+)/update/$', ProblemUpdateView.as_view(success_url='/'), name='problem-update'),
+    url(r'^problem/(?P<pk>[^/]+)/collaborate/$', problem_collaborate, name='problem-collaborate'),
 
     url(r'^accounts/login/$', user_login, name='login'),
     url(r'^accounts/logout/$', user_logout, name='logout'),
