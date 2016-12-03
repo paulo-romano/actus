@@ -129,9 +129,12 @@
 
                       <p class="title">Responsável</p>
                       <p>{{ object.created_by.first_name }}</p>
-                      <p class="title">Colaboradores</p>
-                      <p>Ban Ban</p>
-                      <p>Paulo Romano</p>
+                      {% if object.contributors.count > 0 %}
+                        <p class="title">Colaboradores</p>
+                        {% for contributor in object.contributors.all %}
+                          <p>{{ contributor.first_name }}</p>
+                        {% endfor %}
+                      {% endif %}
                     </div>
 
 {#                    <br />#}

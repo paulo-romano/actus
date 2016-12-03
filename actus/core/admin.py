@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.contrib.auth.models import User
 from actus.core.models import Problem, Comment
 
 class BaseModelAdmin(admin.ModelAdmin):
@@ -12,7 +12,7 @@ class CommentInlineAdmin(admin.TabularInline):
 @admin.register(Problem)
 class ProblemAdmin(BaseModelAdmin):
     short_description = 'Problemas'
-    fields = ('name', 'created_by', 'description', 'duedate', 'budget', 'budget_used')
+    fields = ('name', 'created_by', 'description', 'duedate', 'contributors', 'budget', 'budget_used')
     search_fields = ('name', 'duedate',)
     list_display = ('name', 'created_by', 'duedate', 'budget', 'budget_used')
     inlines = (CommentInlineAdmin,)
