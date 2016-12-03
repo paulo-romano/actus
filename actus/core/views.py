@@ -8,9 +8,10 @@ from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
 from actus.core.models import Problem
 from actus.core.forms import LoginForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class ProblemListView(ListView):
+class ProblemListView(LoginRequiredMixin, ListView):
     template_name = 'problem_list.html'
     model = Problem
 
