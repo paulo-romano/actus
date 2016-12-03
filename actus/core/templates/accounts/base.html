@@ -1,4 +1,5 @@
 {% load static %}
+{% load gravatar %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>
@@ -43,7 +44,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>
@@ -55,7 +56,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load gravatar %}
+
 {% block page_name %}Home{% endblock %}
 {% block page_content %}
   <div class="right_col" role="main">
@@ -83,7 +85,7 @@
                     <ul class="list-inline">
                       {% for contributor in problem.contributors.all %}
                         <li>
-                          <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
+                          <img src="{% gravatar_url user.email 150 %}" class="avatar" alt="Avatar">
                         </li>
                       {% endfor %}
                     </ul>

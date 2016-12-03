@@ -1,4 +1,5 @@
 {% load static %}
+{% load gravatar %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="{% static 'img/img.jpg' %}" alt="..." class="img-circle profile_img">
+                <img src="{% gravatar_url user.email 150 %}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Olá,</span>
@@ -75,7 +76,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'img/img.jpg' %}" alt="">Paulo Romano
+                    <img src="{% gravatar_url user.email 150 %}" alt="">Paulo Romano
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -92,7 +93,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>
@@ -104,7 +105,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>
@@ -116,7 +117,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{% static 'img/img.jpg' %}" alt="Profile Image" /></span>
+                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
                         <span>
                           <span>Paulo Romano</span>
                           <span class="time">3 mins ago</span>
