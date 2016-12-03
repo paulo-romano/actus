@@ -74,58 +74,36 @@
 
                   <!-- end of user messages -->
                   <ul class="messages">
-                    <li>
-                      <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-info">24</h3>
-                        <p class="month">Maio</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Ban Ban</h4>
-                        <blockquote class="message">Vo derrubar tudo essas árvore do parque ibirapuera. Vai subir árvore é o caralho porra! Boraaa, Hora do Show Porra. AHHHHHHHHHHHHHHHHHHHHHH..., porra! Ó o homem ali porra!, é 13 porra! Negativa Bambam negativa.
-</blockquote>
-                        <br />
-{#                        <p class="url">#}
-{#                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>#}
-{#                          <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>#}
-{#                        </p>#}
-                      </div>
-                    </li>
-                    <li>
-                      <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-error">21</h3>
-                        <p class="month">Maio</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Paulo Romano</h4>
-                        <blockquote class="message">Tá comigo porra. Sabe o que é isso daí? Trapézio descendente é o nome disso aí. Que não vai dá rapaiz, não vai dá essa porra. Vem porra! Vo derrubar tudo essas árvore do parque ibirapuera. Ó o homem ali porra!, é 13 porra!</blockquote>
-                        <br />
-{#                        <p class="url">#}
-{#                          <span class="fs1" aria-hidden="true" data-icon=""></span>#}
-{#                          <a href="#" data-original-title="">Download</a>#}
-{#                        </p>#}
-                      </div>
-                    </li>
-                    <li>
-                      <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-info">24</h3>
-                        <p class="month">Maio</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Ban Ban</h4>
-                        <blockquote class="message">Aqui é Body Builder Ipsum PORRA! Ó o homem ali porra!, é 13 porra! AHHHHHHHHHHHHHHHHHHHHHH..., porra! Ele tá olhando pra gente. Aqui é bodybuilder porra! Que não vai dá rapaiz, não vai dá essa porra. Não vai dá não.</blockquote>
-                        <br />
-{#                        <p class="url">#}
-{#                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>#}
-{#                          <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>#}
-{#                        </p>#}
-                      </div>
-                    </li>
+                    {% for comment in object.comment_set.all %}
+                      <li>
+                        <img src="{% static 'img/user.png' %}" class="avatar" alt="Avatar">
+                        <div class="message_date">
+                          <h3 class="date text-info">{{ comment.created_at|date:'d' }}</h3>
+                          <p class="month">{{ comment.created_at|date:'M' }}</p>
+                        </div>
+                        <div class="message_wrapper">
+                          <h4 class="heading">{{ comment.created_by.first_name }}</h4>
+                          <blockquote class="message">{{ comment.body }}</blockquote>
+                          <br />
+  {#                        <p class="url">#}
+  {#                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>#}
+  {#                          <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>#}
+  {#                        </p>#}
+                        </div>
+                      </li>
+                    {% endfor %}
                   </ul>
                   <!-- end of user messages -->
 
+                  <form method="post" class="form-horizontal form-label-left">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <textarea id="id_comment_body" name="comment_body" class="col-md-12 col-sm-12 col-xs-12"></textarea>
+                    </div>
+                    <div class="form-actions">
+                      <button class="btn btn-sm btn-primary" type="submit">Adicionar</button>
+                    </div>
+                  </form>
 
                 </div>
 

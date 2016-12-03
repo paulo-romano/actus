@@ -6,7 +6,7 @@ from django.template import RequestContext
 from django.urls import reverse
 from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
-from actus.core.models import Problem
+from actus.core.models import Problem, Comment
 from actus.core.forms import LoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -19,6 +19,12 @@ class ProblemListView(LoginRequiredMixin, ListView):
 class ProblemDetailView(DetailView):
     template_name = 'problem_detail.html'
     model = Problem
+
+    def post(self, request, *args, **kwargs):
+        Comment(created_by=request.user,
+                problem=Problem.objects.get(pk=kwargs.get('pk')),
+                body=request.POST.get('comment_body')).save()
+        return redirect(resolve_url('problem-detail', *args, **kwargs))
 
 
 class ProblemUpdateView(UpdateView):
