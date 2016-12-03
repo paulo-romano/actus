@@ -9,11 +9,22 @@ from django.views.generic import ListView, DetailView, UpdateView, FormView, Tem
 from actus.core.models import Problem, Comment
 from actus.core.forms import LoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
 class ProblemListView(LoginRequiredMixin, ListView):
     template_name = 'problem_list.html'
     model = Problem
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ProblemListView, self).get_context_data(**kwargs)
+        ctx['total_contributors'] = User.objects.count()
+        ctx['total_problems'] = Problem.objects.count()
+        ctx['total_open_problems'] = '__'
+        ctx['total_closed_problems'] = '__'
+        ctx['total_companies'] = '__'
+        ctx['total_donated_value'] = 100.00
+        return ctx
 
 
 class ProblemDetailView(DetailView):

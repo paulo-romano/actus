@@ -7,29 +7,29 @@
     <div class="row tile_count">
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total de Voluntários</span>
-        <div class="count">1</div>
+        <div class="count">{{ total_contributors }}</div>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total de Problemas</span>
-        <div class="count">3</div>
+        <div class="count">{{ total_problems }}</div>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Problemas em aberto</span>
-        <div class="count">3</div>
+        <div class="count">{{ total_open_problems }}</div>
         <span class="count_bottom"><i class="green">0% </i> do total</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Problemas resolvidos</span>
-        <div class="count">0</div>
+        <div class="count">{{ total_closed_problems }}</div>
         <span class="count_bottom"><i class="green">100% </i> do total</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Empresas parceiras</span>
-        <div class="count">0</div>
+        <div class="count">{{ total_companies }}</div>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Valor doado</span>
-        <div class="count">R$ 0,00</div>
+        <div class="count">R$ {{ total_donated_value }}</div>
       </div>
     </div>
     <!-- /top tiles -->
