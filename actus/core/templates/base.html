@@ -27,7 +27,7 @@
               </div>
               <div class="profile_info">
                 <span>Olá,</span>
-                <h2>Paulo Romano</h2>
+                <h2>{{ request.user.first_name }}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -76,7 +76,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{% gravatar_url user.email 150 %}" alt="">Paulo Romano
+                    <img src="{% gravatar_url user.email 150 %}" alt="">{{ request.user.first_name }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
