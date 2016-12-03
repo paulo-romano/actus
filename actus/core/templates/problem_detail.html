@@ -142,7 +142,9 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="panel-body">
-                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                    {% if object.description %}
+                      <p>{{ object.description }}</p>
+                    {% endif %}
                     <br />
 
                     <div class="project_detail">
