@@ -18,12 +18,12 @@
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-circle-o"></i> Problemas em aberto</span>
         <div class="count">{{ total_open_problems }}</div>
-        <span class="count_bottom"><i class="green">0% </i> do total</span>
+        <span class="count_bottom"><i class="green">{{ total_open_problems_perc }}% </i> do total</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-check"></i> Problemas resolvidos</span>
         <div class="count">{{ total_closed_problems }}</div>
-        <span class="count_bottom"><i class="green">100% </i> do total</span>
+        <span class="count_bottom"><i class="green">{{ total_closed_problems_perc }}% </i> do total</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-comments"></i> Total de comentários</span>

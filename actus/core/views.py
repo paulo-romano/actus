@@ -21,8 +21,10 @@ class ProblemListView(LoginRequiredMixin, ListView):
         ctx = super(ProblemListView, self).get_context_data(**kwargs)
         ctx['total_contributors'] = User.objects.count()
         ctx['total_problems'] = Problem.objects.count()
-        ctx['total_open_problems'] = len(Problem.objects.filter(progress__lte=100))
+        ctx['total_open_problems'] = len(Problem.objects.filter(progress__lte=99.9))
+        ctx['total_open_problems_perc'] = round((ctx['total_open_problems'] / ctx['total_problems']) * 100, 2)
         ctx['total_closed_problems'] = len(Problem.objects.filter(progress__gte=100))
+        ctx['total_closed_problems_perc'] = round((ctx['total_closed_problems'] / ctx['total_problems']) * 100, 2)
         ctx['total_comments'] = Comment.objects.count()
 
         total_donated_value = 0
