@@ -30,6 +30,7 @@ class Problem(BaseModel):
     duedate = models.DateField(verbose_name='Data Finalização')
     budget = models.DecimalField(verbose_name='Orçamento', decimal_places=2, max_digits=10, default=0)
     budget_used = models.DecimalField(verbose_name='Gasto', decimal_places=2, max_digits=10, default=0)
+    progress = models.DecimalField(verbose_name='Gasto', decimal_places=2, max_digits=10, default=0)
     contributors = models.ManyToManyField(User, verbose_name='Colaboradores')
 
     def __str__(self):

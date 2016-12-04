@@ -92,7 +92,7 @@
                         </div>
                         <div class="message_wrapper">
                           <h4 class="heading">{{ comment.created_by.first_name }}</h4>
-                          <blockquote class="message">{{ comment.body }}</blockquote>
+                          <blockquote class="message">{{ comment.body|safe }}</blockquote>
                           <br />
   {#                        <p class="url">#}
   {#                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>#}
@@ -107,10 +107,32 @@
                     <form method="post" class="form-horizontal form-label-left">
                       {% csrf_token %}
                       <div class="form-group">
-                        <textarea id="id_comment_body" name="comment_body" class="col-md-12 col-sm-12 col-xs-12"></textarea>
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_comment_body">Comentário</label>
+                        <textarea id="id_comment_body" name="comment_body" class="col-md-6 col-sm-6 col-xs-12"></textarea>
                       </div>
-                      <div class="form-actions">
-                        <button class="btn btn-sm btn-primary" type="submit">Comentar</button>
+
+                      {% if request.user == object.created_by %}
+
+                      <div class="form-group">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_budget_used">Gasto</label>
+                        <input type="number" id="id_budget_used" name="budget_used" min="{{ problem.budget_used }}"
+                               max="{{ problem.budget }}"
+                               class="col-md-6 col-sm-6 col-xs-12">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_progress">Progresso</label>
+                        <input type="number" id="id_progress" name="progress" min="{{ problem.progress }}"
+                               max="100"
+                               class="col-md-6 col-sm-6 col-xs-12">
+                      </div>
+
+                      {% endif %}
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-10">
+                          <button class="btn btn-sm btn-primary" type="submit">Comentar</button>
+                        </div>
                       </div>
                     </form>
                   {% endif %}

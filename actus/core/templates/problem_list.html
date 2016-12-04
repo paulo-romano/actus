@@ -78,9 +78,9 @@
                   </td>
                   <td class="project_progress">
                     <div class="progress progress_sm">
-                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{ problem.progress }}"></div>
                     </div>
-                    <small>57% Complete</small>
+                    <small>{{ problem.progress }}% Complete</small>
                   </td>
                 </tr>
                 {% endfor %}

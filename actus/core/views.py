@@ -33,9 +33,29 @@ class ProblemDetailView(DetailView):
     model = Problem
 
     def post(self, request, *args, **kwargs):
+        problem = Problem.objects.get(pk=kwargs.get('pk'))
+        body = request.POST.get('comment_body')
+
+        if request.POST.get('budget_used'):
+            problem.budget_used = request.POST.get('budget_used')
+            problem.save()
+            if body:
+                body += '<br/><br/>'
+
+            body += '==> Gasto: R$ ' + str(problem.budget_used)
+
+        if request.POST.get('progress'):
+            problem.progress = request.POST.get('progress')
+            problem.save()
+
+            if not '<br/><br/>' in body:
+                body += '<br/>'
+
+            body += '<br/>' + '==> Progresso: ' + str(problem.progress) + '%'
+
         Comment(created_by=request.user,
-                problem=Problem.objects.get(pk=kwargs.get('pk')),
-                body=request.POST.get('comment_body')).save()
+                problem=problem,
+                body=body).save()
         return redirect(resolve_url('problem-detail', *args, **kwargs))
 
 
