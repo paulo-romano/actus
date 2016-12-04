@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load gravatar %}
+
 {% block page_name %}{{ object.name }}{% endblock %}
 {% block page_content %}
-  <div class="right_col" role="main">
+  <div class="right_col" style="margin-left: 0px; margin-right: 0px;" role="main">
     <div class="">
       <div class="page-title">
         <div class="title_left">
@@ -25,7 +26,7 @@
       <div class="clearfix"></div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
               <h2>{{ problem.name }}</h2>
@@ -107,30 +108,34 @@
                     <form method="post" class="form-horizontal form-label-left">
                       {% csrf_token %}
                       <div class="form-group">
-                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_comment_body">Comentário</label>
-                        <textarea id="id_comment_body" name="comment_body" class="col-md-6 col-sm-6 col-xs-12"></textarea>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_comment_body">Comentário</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea id="id_comment_body" name="comment_body"></textarea>
+                        </div>
                       </div>
 
                       {% if request.user == object.created_by %}
 
                       <div class="form-group">
-                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_budget_used">Gasto</label>
-                        <input type="number" id="id_budget_used" name="budget_used" min="{{ problem.budget_used }}"
-                               max="{{ problem.budget }}"
-                               class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_budget_used">Gasto</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="id_budget_used" name="budget_used" min="{{ problem.budget_used }}"
+                                 max="{{ problem.budget }}">
+                        </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="id_progress">Progresso</label>
-                        <input type="number" id="id_progress" name="progress" min="{{ problem.progress }}"
-                               max="100"
-                               class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_progress">Progresso</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="id_progress" name="progress" min="{{ problem.progress }}"
+                                 max="100">
+                        </div>
                       </div>
 
                       {% endif %}
                       <div class="ln_solid"></div>
                       <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-10">
+                        <div class="">
                           <button class="btn btn-sm btn-primary" type="submit">Comentar</button>
                         </div>
                       </div>
