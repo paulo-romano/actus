@@ -21,10 +21,15 @@ class ProblemListView(LoginRequiredMixin, ListView):
         ctx = super(ProblemListView, self).get_context_data(**kwargs)
         ctx['total_contributors'] = User.objects.count()
         ctx['total_problems'] = Problem.objects.count()
-        ctx['total_open_problems'] = '__'
-        ctx['total_closed_problems'] = '__'
-        ctx['total_companies'] = '__'
-        ctx['total_donated_value'] = 100.00
+        ctx['total_open_problems'] = len(Problem.objects.filter(progress__lte=100))
+        ctx['total_closed_problems'] = len(Problem.objects.filter(progress__gte=100))
+        ctx['total_comments'] = Comment.objects.count()
+
+        total_donated_value = 0
+        for p in Problem.objects.all():
+            total_donated_value += p.budget_used
+
+        ctx['total_donated_value'] = total_donated_value
         return ctx
 
 
