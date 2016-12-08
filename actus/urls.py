@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout, \
     UserUpdateView, ProblemCreateView, problem_collaborate
 from django.urls import reverse
+import notifications.urls
 
 urlpatterns = [
     url(r'^$', ProblemListView.as_view(), name='home'),
@@ -31,4 +32,5 @@ urlpatterns = [
     url(r'^accounts/(?P<pk>[^/]+)/update/$', UserUpdateView.as_view(success_url='/'), name='user-update'),
 
     url(r'^admin/', admin.site.urls),
+    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ]

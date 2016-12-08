@@ -11,6 +11,11 @@ from actus.core.models import Problem, Comment
 from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from notifications.models import Notification
+
+
+def get_context_notifications(user):
+    return Notification.objects.filter(recipient=user)
 
 
 class ProblemListView(LoginRequiredMixin, ListView):
@@ -26,6 +31,8 @@ class ProblemListView(LoginRequiredMixin, ListView):
         ctx['total_closed_problems'] = len(Problem.objects.filter(progress__gte=100))
         ctx['total_closed_problems_perc'] = round((ctx['total_closed_problems'] / ctx['total_problems']) * 100, 2)
         ctx['total_comments'] = Comment.objects.count()
+        ctx['notifications'] = get_context_notifications(self.request.user)
+        ctx['notifications_qty'] = len(ctx['notifications'])
 
         total_donated_value = 0
         for p in Problem.objects.all():
@@ -38,6 +45,12 @@ class ProblemListView(LoginRequiredMixin, ListView):
 class ProblemDetailView(DetailView):
     template_name = 'problem_detail.html'
     model = Problem
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ProblemDetailView, self).get_context_data(**kwargs)
+        ctx['notifications'] = get_context_notifications(self.request.user)
+        ctx['notifications_qty'] = len(ctx['notifications'])
+        return ctx
 
     def post(self, request, *args, **kwargs):
         problem = Problem.objects.get(pk=kwargs.get('pk'))
@@ -71,15 +84,27 @@ class ProblemUpdateView(UpdateView):
     model = Problem
     form_class = ProblemForm
 
+    def get_context_data(self, **kwargs):
+        ctx = super(ProblemUpdateView, self).get_context_data(**kwargs)
+        ctx['notifications'] = get_context_notifications(self.request.user)
+        ctx['notifications_qty'] = len(ctx['notifications'])
+        return ctx
+
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
-        return super(ProblemCreateView, self).form_valid(form)
+        return super(ProblemUpdateView, self).form_valid(form)
 
 
 class ProblemCreateView(CreateView):
     template_name = 'problem_create.html'
     model = Problem
     form_class = ProblemForm
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ProblemCreateView, self).get_context_data(**kwargs)
+        ctx['notifications'] = get_context_notifications(self.request.user)
+        ctx['notifications_qty'] = len(ctx['notifications'])
+        return ctx
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -91,6 +116,12 @@ class UserUpdateView(UpdateView):
     template_name = 'user_update.html'
     model = User
     form_class = ProfileForm
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UserUpdateView, self).get_context_data(**kwargs)
+        ctx['notifications'] = get_context_notifications(self.request.user)
+        ctx['notifications_qty'] = len(ctx['notifications'])
+        return ctx
 
 def problem_collaborate(request, pk):
     context = RequestContext(request)

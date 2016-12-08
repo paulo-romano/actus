@@ -48,48 +48,26 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green">{{ notifications_qty }}</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
-                        <span>
-                          <span>Paulo Romano</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Adicionou o problema "Pintar bancos da Praça da Sé "
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
-                        <span>
-                          <span>Paulo Romano</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Adicionou o problema "Plantar flores na rua Alva "
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="{% gravatar_url user.email 150 %}" alt="Profile Image" /></span>
-                        <span>
-                          <span>Paulo Romano</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Adicionou o problema "Pintar bancos da Praça da Sé"
-                        </span>
-                      </a>
-                    </li>
+                    {% for notification in notifications %}
+                      <li>
+                        <a>
+                          <span class="image"><img src="{% gravatar_url notification.actor.email 150 %}" alt="Profile Image" /></span>
+                          <span>
+                            <span>Paulo Romano</span>
+                            <span class="time">{{ notification.timesince }}</span>
+                          </span>
+                          <span class="message">
+                            {{ notification.verb }}
+                          </span>
+                        </a>
+                      </li>
+                    {% endfor %}
                     <li>
                       <div class="text-center">
-                        <a>
+                        <a href="/inbox/notifications/">
                           <strong>Veja todos</strong>
                           <i class="fa fa-angle-right"></i>
                         </a>

@@ -22,8 +22,8 @@ class CategoryAdmin(BaseModelAdmin):
 @admin.register(Problem)
 class ProblemAdmin(BaseModelAdmin):
     short_description = 'Problemas'
-    fields = ('name', 'category', 'created_by', 'description', 'duedate', 'contributors', 'budget', 'budget_used')
+    fields = ('name', 'category', 'created_by', 'description', 'duedate', 'contributors', 'budget', 'budget_used', 'progress')
     search_fields = ('name', 'category', 'duedate',)
-    list_display = ('name', 'created_by', 'duedate', 'budget', 'budget_used')
+    list_display = ('name', 'created_by', 'duedate', 'budget', 'budget_used', 'progress')
     inlines = (CommentInlineAdmin,)
 
