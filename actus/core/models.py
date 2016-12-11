@@ -64,7 +64,8 @@ class Comment(BaseModel):
             for user in instance.problem.contributors.all():
                 notify.send(instance.created_by, recipient=user, verb='Comentou no problema ' + instance.problem.name)
                 if float(instance.problem.progress) >= 100:
-                    notify.send(instance.created_by, recipient=user, verb='O problema {0} foi resolvido!'.format(instance.problem.name))
+                    notify.send(instance.created_by, recipient=user, verb='O problema {0} foi resolvido!'.format(
+                        instance.problem.name))
 
     class Meta:
         verbose_name = 'problema'
