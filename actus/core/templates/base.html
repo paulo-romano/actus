@@ -55,7 +55,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     {% for notification in notifications %}
                       <li>
-                        <a href="{% url 'notifications:mark_as_read' notification.slug %}?next={% url 'home' %}">
+                        <a href="{% url 'notifications:mark_as_read' notification.slug %}?next={% url 'problem-detail' pk=notification.target.pk %}">
                           <span class="image"><img src="{% gravatar_url notification.actor.email 150 %}" alt="Profile Image" /></span>
                           <span>
                             <span>Paulo Romano</span>
