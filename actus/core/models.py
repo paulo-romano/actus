@@ -41,6 +41,9 @@ class Problem(BaseModel):
     @staticmethod
     @receiver(models.signals.post_save, sender='core.Problem')
     def post_save(sender, instance, created, **kwargs):
+        if created:
+            instance.contributors.add(instance.created_by)
+
         for user in User.objects.all():
             verb = 'Criou' if created else 'Editou'
             notify.send(instance.created_by, recipient=user, verb=verb + ' o problema ' + instance.name)
