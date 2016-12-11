@@ -113,7 +113,7 @@ class ProblemCreateView(CreateView):
 
 
 class UserUpdateView(UpdateView):
-    template_name = 'user_update.html'
+    template_name = 'accounts/user_update.html'
     model = User
     form_class = ProfileForm
 
