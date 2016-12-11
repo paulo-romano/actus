@@ -58,8 +58,8 @@
                         <a href="{% url 'notifications:mark_as_read' notification.slug %}?next={% url 'problem-detail' pk=notification.target.pk %}">
                           <span class="image"><img src="{% gravatar_url notification.actor.email 150 %}" alt="Profile Image" /></span>
                           <span>
-                            <span>Paulo Romano</span>
-                            <span class="time">{{ notification.timesince }}</span>
+                            <span>{{ notification.actor.first_name }}</span>
+                            <span class="time">Há {{ notification.timesince }}</span>
                           </span>
                           <span class="message">
                             {{ notification.verb }}
