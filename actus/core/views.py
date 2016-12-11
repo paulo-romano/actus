@@ -15,7 +15,7 @@ from notifications.models import Notification
 
 
 def get_context_notifications(user):
-    return Notification.objects.filter(recipient=user)
+    return Notification.objects.filter(recipient=user, unread=True)
 
 
 class ProblemListView(LoginRequiredMixin, ListView):

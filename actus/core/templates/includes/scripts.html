@@ -300,3 +300,13 @@
   gauge.setTextField(document.getElementById("gauge-text"));
 </script>
 <!-- /gauge.js -->
+<script>
+  function notification_markasread(id) {
+    $.ajax({
+      url: "test.html",
+      context: document.body
+    }).done(function() {
+      $( this ).addClass( "done" );
+    });
+  }
+</script>
