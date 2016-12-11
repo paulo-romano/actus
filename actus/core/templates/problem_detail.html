@@ -174,7 +174,9 @@
                       <p class="title">Responsável</p>
                       <p>{{ object.created_by.first_name }}</p>
                       {% if object.contributors.count > 0 %}
-                        <p class="title">Colaboradores</p>
+                        <p class="title">Colaboradores
+                          <a class="" href="{% url 'problem-invite' pk=problem.pk %}">(+)</a>
+                        </p>
                         {% for contributor in object.contributors.all %}
                           <p>{{ contributor.first_name }}</p>
                         {% endfor %}

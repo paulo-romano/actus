@@ -12,6 +12,7 @@ from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm, Us
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from notifications.models import Notification
+from notifications.signals import notify
 
 
 def get_context_notifications(user):
@@ -147,6 +148,27 @@ def problem_collaborate(request, pk):
 
     return render(request, 'problem_collaborate.html',
                   {'form': form, 'context': context, 'problem': problem})
+
+
+def problem_invite(request, pk):
+    context = RequestContext(request)
+    problem = Problem.objects.get(pk=pk)
+    users_to_invite_list = User.objects.all()
+    notifications = get_context_notifications(request.user)
+
+    if request.method == 'POST':
+        user_to_invite = User.objects.filter(id=request.POST.get('user_to_invite')).first()
+        if user_to_invite:
+            notify.send(request.user, target=problem, recipient=user_to_invite, verb='Ti convidou para o problema ' + problem.name)
+        return redirect('problem-detail', pk=pk)
+
+    return render(request, 'problem_invite.html', {
+        'context': context,
+        'notifications': notifications,
+        'notifications_qty': len(notifications),
+        'users_to_invite_list': users_to_invite_list,
+        'problem': problem
+    })
 
 def user_login(request):
     context = RequestContext(request)
