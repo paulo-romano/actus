@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load gravatar %}
+
+{% block page_name %}Home{% endblock %}
+{% block page_content %}
+  <div class="right_col" style="margin-left: 0px; margin-right: 0px;" role="main">
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Notificações</h2>
+            <div class="navbar-right">
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <!-- start project list -->
+            <table class="table table-striped projects">
+              <thead>
+                <tr>
+                  <th style="width: 1%">#</th>
+                  <th style="width: 20%">Quem</th>
+                  <th>Ação</th>
+                  <th>Quando</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for notification in object_list %}
+                  <tr>
+                  <td>#</td>
+                  <td>
+                    {{ notification.actor.first_name }}
+                  </td>
+                  <td>
+                    {{ notification.verb }}
+                  </td>
+                  <td>
+                    Há {{ notification.timesince }}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- end project list -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock page_content %}
