@@ -8,7 +8,7 @@ from django.utils.http import is_safe_url
 from django.views.generic import CreateView
 from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
 from actus.core.models import Problem, Comment
-from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm
+from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from notifications.models import Notification
@@ -122,6 +122,11 @@ class UserUpdateView(UpdateView):
         ctx['notifications'] = get_context_notifications(self.request.user)
         ctx['notifications_qty'] = len(ctx['notifications'])
         return ctx
+
+class UserCreateView(CreateView):
+    template_name = 'accounts/user_create.html'
+    model = User
+    form_class = UserCreationForm
 
 def problem_collaborate(request, pk):
     context = RequestContext(request)

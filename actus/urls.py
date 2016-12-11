@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from actus.core.views import ProblemListView, ProblemDetailView, ProblemUpdateView, user_login, user_logout, \
-    UserUpdateView, ProblemCreateView, problem_collaborate
+    UserUpdateView, ProblemCreateView, problem_collaborate, UserCreateView
 from django.urls import reverse
 import notifications.urls
 
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^accounts/login/$', user_login, name='login'),
     url(r'^accounts/logout/$', user_logout, name='logout'),
     url(r'^accounts/(?P<pk>[^/]+)/update/$', UserUpdateView.as_view(success_url='/'), name='user-update'),
+    url(r'^accounts/create/$', UserCreateView.as_view(success_url='/'), name='user-create'),
 
     url(r'^admin/', admin.site.urls),
     url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
