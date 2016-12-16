@@ -2,5 +2,6 @@
 .idea
 /npm-debug.log
 *.sqlite3
+*.pyc
 __pycache__
 public/
