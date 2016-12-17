@@ -30,7 +30,9 @@ class UserCreationForm(UserCreationForm):
     #
     class Meta:
         model = User
-        exclude = ('password', 'last_login', 'is_staff', 'is_superuser', 'groups', 'user_permissions', 'is_active', 'date_joined')
+        exclude = ('password', 'last_login', 'is_staff', 'is_superuser',
+                   'groups', 'user_permissions', 'is_active',
+                   'date_joined')
 
 
 class ProblemForm(ModelForm):
@@ -38,7 +40,8 @@ class ProblemForm(ModelForm):
         model = Problem
         fields = ['name', 'category', 'description', 'duedate', 'budget']
 
+
 class CommetForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ('body', )
+        fields = ('body',)

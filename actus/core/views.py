@@ -1,16 +1,14 @@
-from django.contrib.auth import REDIRECT_FIELD_NAME, authenticate, logout, login
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, resolve_url
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from django.urls import reverse
 from django.utils.http import is_safe_url
 from django.views.generic import CreateView
-from django.views.generic import ListView, DetailView, UpdateView, FormView, TemplateView
+from django.views.generic import (ListView, DetailView, UpdateView)
 from actus.core.models import Problem, Comment
-from actus.core.forms import LoginForm, ProblemForm, ProfileForm, CommetForm, UserCreationForm
+from actus.core.forms import (LoginForm, ProblemForm, ProfileForm,
+CommetForm, UserCreationForm)
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from notifications.models import Notification
 from notifications.signals import notify
 
@@ -27,10 +25,15 @@ class ProblemListView(LoginRequiredMixin, ListView):
         ctx = super(ProblemListView, self).get_context_data(**kwargs)
         ctx['total_contributors'] = User.objects.count()
         ctx['total_problems'] = Problem.objects.count()
-        ctx['total_open_problems'] = len(Problem.objects.filter(progress__lte=99.9))
-        ctx['total_open_problems_perc'] = round((ctx['total_open_problems'] / ctx['total_problems']) * 100, 2)
-        ctx['total_closed_problems'] = len(Problem.objects.filter(progress__gte=100))
-        ctx['total_closed_problems_perc'] = round((ctx['total_closed_problems'] / ctx['total_problems']) * 100, 2)
+        ctx['total_open_problems'] = len(
+            Problem.objects.filter(progress__lte=99.9))
+        ctx['total_open_problems_perc'] = round(
+            (ctx['total_open_problems'] / ctx['total_problems']) * 100, 2)
+        ctx['total_closed_problems'] = len(
+            Problem.objects.filter(progress__gte=100))
+        ctx['total_closed_problems_perc'] = round(
+            (ctx['total_closed_problems'] / ctx['total_problems'])
+            * 100, 2)
         ctx['total_comments'] = Comment.objects.count()
         ctx['notifications'] = get_context_notifications(self.request.user)
         ctx['notifications_qty'] = len(ctx['notifications'])
@@ -69,10 +72,11 @@ class ProblemDetailView(DetailView):
             problem.progress = request.POST.get('progress')
             problem.save()
 
-            if not '<br/><br/>' in body:
+            if '<br/><br/>' not in body:
                 body += '<br/>'
 
-            body += '<br/>' + '==> Progresso: ' + str(problem.progress) + '%'
+            body += '<br/>' + '==> Progresso: ' + \
+            str(problem.progress) + '%'
 
         Comment(created_by=request.user,
                 problem=problem,
@@ -157,9 +161,12 @@ def problem_invite(request, pk):
     notifications = get_context_notifications(request.user)
 
     if request.method == 'POST':
-        user_to_invite = User.objects.filter(id=request.POST.get('user_to_invite')).first()
+        user_to_invite = User.objects.filter(
+            id=request.POST.get('user_to_invite')).first()
         if user_to_invite:
-            notify.send(request.user, target=problem, recipient=user_to_invite, verb='Ti convidou para o problema ' + problem.name)
+            notify.send(request.user, target=problem,
+                        recipient=user_to_invite,
+                        verb='Ti convidou para o problema ' + problem.name)
         return redirect('problem-detail', pk=pk)
 
     return render(request, 'problem_invite.html', {
@@ -190,7 +197,8 @@ def user_login(request):
 
     else:
         form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form, 'context': context})
+    return render(request, 'accounts/login.html', {'form': form,
+                                                   'context': context})
 
 def user_logout(request):
     logout(request)

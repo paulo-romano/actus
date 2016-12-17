@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
 from actus.core.models import Problem, Comment, Category
 
 
@@ -22,8 +21,9 @@ class CategoryAdmin(BaseModelAdmin):
 @admin.register(Problem)
 class ProblemAdmin(BaseModelAdmin):
     short_description = 'Problemas'
-    fields = ('name', 'category', 'created_by', 'description', 'duedate', 'contributors', 'budget', 'budget_used', 'progress')
+    fields = ('name', 'category', 'created_by', 'description', 'duedate',
+              'contributors', 'budget', 'budget_used', 'progress')
     search_fields = ('name', 'category', 'duedate',)
-    list_display = ('name', 'created_by', 'duedate', 'budget', 'budget_used', 'progress')
+    list_display = ('name', 'created_by', 'duedate', 'budget',
+                    'budget_used', 'progress')
     inlines = (CommentInlineAdmin,)
-
